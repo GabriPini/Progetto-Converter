@@ -1,8 +1,38 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+.nav-link {
+    color: #040b38;
+}
+
+.bg-footer {
+    background-color: #040b38;
+    height: 434px;
+    width: 100%;
+    p,
+    span {
+        color: #818498;
+    }
+    h6 {
+        color: #2a67eb;
+        font-weight: 700;
+    }
+    a {
+        text-decoration: none;
+        color: #e9e9eb;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    hr {
+        margin-top: 30px;
+        height: 6px;
+        width: 100%;
+        background-color: #9ebbfa;
+    }
+}

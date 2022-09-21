@@ -50,7 +50,7 @@
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
-  --bs-body-bg-rgb: 248, 250, 252;
+  --bs-body-bg-rgb: 250, 252, 255;
   --bs-font-sans-serif: "Nunito", sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -59,7 +59,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.6;
   --bs-body-color: #212529;
-  --bs-body-bg: #f8fafc;
+  --bs-body-bg: #fafcff;
   --bs-border-width: 1px;
   --bs-border-style: solid;
   --bs-border-color: #dee2e6;
@@ -647,7 +647,7 @@ progress {
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #f8fafc;
+  background-color: #fafcff;
   border: 1px solid var(--bs-border-color);
   border-radius: 0.375rem;
   max-width: 100%;
@@ -2297,7 +2297,7 @@ progress {
   font-weight: 400;
   line-height: 1.6;
   color: #212529;
-  background-color: #f8fafc;
+  background-color: #fafcff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
   -webkit-appearance: none;
@@ -2323,7 +2323,7 @@ progress {
 
 .form-control:focus {
   color: #212529;
-  background-color: #f8fafc;
+  background-color: #fafcff;
   border-color: #9ac8ee;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(52, 144, 220, 0.25);
@@ -2472,7 +2472,7 @@ textarea.form-control-lg {
   font-weight: 400;
   line-height: 1.6;
   color: #212529;
-  background-color: #f8fafc;
+  background-color: #fafcff;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
@@ -2557,7 +2557,7 @@ textarea.form-control-lg {
   height: 1em;
   margin-top: 0.3em;
   vertical-align: top;
-  background-color: #f8fafc;
+  background-color: #fafcff;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2688,11 +2688,11 @@ textarea.form-control-lg {
 }
 
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.25rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #fafcff, 0 0 0 0.25rem rgba(52, 144, 220, 0.25);
 }
 
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.25rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #fafcff, 0 0 0 0.25rem rgba(52, 144, 220, 0.25);
 }
 
 .form-range::-moz-focus-outer {
@@ -4155,8 +4155,8 @@ fieldset:disabled .btn {
   --bs-nav-tabs-border-radius: 0.375rem;
   --bs-nav-tabs-link-hover-border-color: #e9ecef #e9ecef #dee2e6;
   --bs-nav-tabs-link-active-color: #495057;
-  --bs-nav-tabs-link-active-bg: #f8fafc;
-  --bs-nav-tabs-link-active-border-color: #dee2e6 #dee2e6 #f8fafc;
+  --bs-nav-tabs-link-active-bg: #fafcff;
+  --bs-nav-tabs-link-active-border-color: #dee2e6 #dee2e6 #fafcff;
   border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
 }
 
@@ -4937,7 +4937,7 @@ fieldset:disabled .btn {
 
 .accordion {
   --bs-accordion-color: var(--bs-body-color);
-  --bs-accordion-bg: #f8fafc;
+  --bs-accordion-bg: #fafcff;
   --bs-accordion-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
   --bs-accordion-border-color: var(--bs-border-color);
   --bs-accordion-border-width: 1px;
@@ -12625,5 +12625,40 @@ fieldset:disabled .btn {
   .d-print-none {
     display: none !important;
   }
+}
+
+.nav-link {
+  color: #040b38;
+}
+
+.bg-footer {
+  background-color: #040b38;
+  height: 434px;
+  width: 100%;
+}
+
+.bg-footer p,
+.bg-footer span {
+  color: #818498;
+}
+
+.bg-footer h6,
+.bg-footer .h6 {
+  color: #2a67eb;
+  font-weight: 700;
+}
+
+.bg-footer a {
+  text-decoration: none;
+  color: #e9e9eb;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.bg-footer hr {
+  margin-top: 30px;
+  height: 6px;
+  width: 100%;
+  background-color: #9ebbfa;
 }
 
