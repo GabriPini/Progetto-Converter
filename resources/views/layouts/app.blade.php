@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     {{-- link per le varie sezioni del sito (al momoento iplementazione solo della Home) --}}
-                    <ul class="navbar-nav mx-auto gap-3 ">
+                    <ul class="navbar-nav mx-auto gap-4 ">
                         <li class="nav-item">
                             <a class="nav-link fw-bold" href="{{ route('home') }}">{{ __('Home') }}</a>
                         </li>
@@ -133,9 +133,13 @@
 
                         </div>
                     </div>
-                    <div class="container text-center">
+                    <div class="container ">
                         <hr >
-                        <span class=""> © Doc Converter 2022</span>
+                        <div class="d-flex justify-content-center">
+                            <span class=""> © Doc Converter 2022</span>
+                            <span class="ms-5">italiano</span>
+
+                        </div>
                     </div>
 
 
