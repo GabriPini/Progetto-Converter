@@ -457,6 +457,17 @@ export default {
 
 /* stat form  */
 
+p {
+    color: #818498;
+}
+
+h2 {
+    color: #1f0f4d;
+}
+
+h5 {
+    color: #040b38;
+}
 .first-section {
     width: 100%;
     background-color: #fafcff;
@@ -464,9 +475,6 @@ export default {
     h1 {
         font-size: 64px;
         color: #040b38;
-    }
-    p {
-        color: #818498;
     }
     .border-dashed {
         border-style: dashed;

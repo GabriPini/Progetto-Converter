@@ -12631,6 +12631,10 @@ fieldset:disabled .btn {
   color: #040b38;
 }
 
+.bg-custom {
+  background-color: #e4ecfc;
+}
+
 .bg-footer {
   background-color: #040b38;
   height: 434px;

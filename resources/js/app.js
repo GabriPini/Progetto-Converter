@@ -28,6 +28,7 @@ import {
     faGear,
     faShieldVirus,
     faDesktop,
+    faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -43,7 +44,8 @@ library.add(
     faGear,
     faCloudArrowUp,
     faShieldVirus,
-    faDesktop
+    faDesktop,
+    faAngleRight
 );
 
 /* add font awesome icon component */
