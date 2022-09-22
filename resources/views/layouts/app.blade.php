@@ -137,7 +137,7 @@
                         <hr >
                         <div class="d-flex justify-content-center">
                             <span class=""> © Doc Converter 2022</span>
-                            <span class="ms-5">italiano</span>
+                            <span class="ms-5">  italiano</span>
 
                         </div>
                     </div>

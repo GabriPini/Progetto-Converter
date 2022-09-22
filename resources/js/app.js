@@ -13,6 +13,44 @@ import App from "./views/App";
 window.axios = require("axios");
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
+/* import the fontawesome core */
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+/* import specific icons */
+import {
+    faFolderPlus,
+    faCloud,
+    faRotate,
+    faCloudArrowUp,
+    faGear,
+    faShieldVirus,
+    faDesktop,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { faStar } from "@fortawesome/free-regular-svg-icons";
+import { faDropbox, faGoogleDrive } from "@fortawesome/free-brands-svg-icons";
+/* add icons to the library */
+library.add(
+    faFolderPlus,
+    faDropbox,
+    faGoogleDrive,
+    faCloud,
+    faRotate,
+    faStar,
+    faGear,
+    faCloudArrowUp,
+    faShieldVirus,
+    faDesktop
+);
+
+/* add font awesome icon component */
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
+Vue.config.productionTip = false;
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
