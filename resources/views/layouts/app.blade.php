@@ -41,7 +41,7 @@
                     {{-- link per le varie sezioni del sito (al momoento iplementazione solo della Home) --}}
                     <ul class="navbar-nav mx-auto gap-4 ">
                         <li class="nav-item">
-                            <a class="nav-link fw-bold" href="{{ route('home') }}">{{ __('Home') }}</a>
+                            <a class="nav-link fw-bold" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fw-bold" href="#">{{ __('About') }}</a>
