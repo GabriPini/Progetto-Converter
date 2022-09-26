@@ -25141,6 +25141,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var convertapi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! convertapi-js */ "./node_modules/convertapi-js/dist/convertapi.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
 
@@ -25149,6 +25159,7 @@ __webpack_require__.r(__webpack_exports__);
   */
   data: function data() {
     return {
+      convertApi: convertapi_js__WEBPACK_IMPORTED_MODULE_0__["default"].auth("ltE5TH69gYyu4IKI"),
       dragAndDropCapable: false,
       files: [],
       uploadPercentage: 0
@@ -25168,13 +25179,21 @@ __webpack_require__.r(__webpack_exports__);
       Listen to all of the drag events and bind an event listener to each
       for the fileform.
       */
-      ["drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop"].forEach(function (evt) {
+      ["change", "drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop"].forEach(function (evt) {
         /*
         For each event add an event listener that prevents the default action
         (opening the file in the browser) and stop the propagation of the event (so
         no other elements open the file in the browser)
         */
         this.$refs.fileform.addEventListener(evt, function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }.bind(this), false);
+        this.$refs.fileform2.addEventListener(evt, function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }.bind(this), false);
+        this.$refs.fileform3.addEventListener(evt, function (e) {
           e.preventDefault();
           e.stopPropagation();
         }.bind(this), false);
@@ -25190,12 +25209,43 @@ __webpack_require__.r(__webpack_exports__);
         */
         for (var i = 0; i < e.dataTransfer.files.length; i++) {
           this.files.push(e.dataTransfer.files[i]);
-          this.getImagePreviews();
         }
+      }.bind(this));
+      this.$refs.fileform2.addEventListener("change", function () {
+        console.log(this.$refs.fileform2.files[0]);
+        this.files.push(this.$refs.fileform2.files[0]);
+      }.bind(this));
+      this.$refs.fileform3.addEventListener("change", function () {
+        console.log(this.$refs.fileform3.files[0]);
+        this.files.push(this.$refs.fileform3.files[0]);
       }.bind(this));
     }
   },
   methods: {
+    apiCall: function apiCall() {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var params, result;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                params = convertApi.createParams();
+                params.add("Files", elFileInput.files);
+                _context.next = 4;
+                return convertApi.convert("any", "zip", params);
+
+              case 4:
+                result = _context.sent;
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+
     /*
     Determines if the drag and drop functionality is in the
     window
@@ -25218,94 +25268,15 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /*
-    Gets the image preview for the file.
-    */
-    getImagePreviews: function getImagePreviews() {
-      var _this = this;
-
-      var _loop = function _loop(i) {
-        /*
-        Ensure the file is an image file
-        */
-        if (/\.(jpe?g|png|gif)$/i.test(_this.files[i].name)) {
-          /*
-          Create a new FileReader object
-          */
-          var reader = new FileReader();
-          /*
-          Add an event listener for when the file has been loaded
-          to update the src on the file preview.
-          */
-
-          reader.addEventListener("load", function () {
-            this.$refs["preview" + parseInt(i)][0].src = reader.result;
-          }.bind(_this), false);
-          /*
-          Read the data for the file in through the reader. When it has
-          been loaded, we listen to the event propagated and set the image
-          src to what was loaded from the reader.
-          */
-
-          reader.readAsDataURL(_this.files[i]);
-        } else {
-          /*
-          We do the next tick so the reference is bound and we can access it.
-          */
-          _this.$nextTick(function () {
-            this.$refs["preview" + parseInt(i)][0].src = "/images/file.png";
-          });
-        }
-      };
-
-      /*
-      Iterate over all of the files and generate an image preview for each one.
-      */
-      for (var i = 0; i < this.files.length; i++) {
-        _loop(i);
-      }
-    },
-
-    /*
-    Submits the files to the server
-    */
-    submitFiles: function submitFiles() {
-      /*
-      Initialize the form data
-      */
-      var formData = new FormData();
-      /*
-      Iteate over any file sent over appending the files
-      to the form data.
-      */
-
-      for (var i = 0; i < this.files.length; i++) {
-        var file = this.files[i];
-        formData.append("files[" + i + "]", file);
-      }
-      /*
-      Make the request to the POST /file-drag-drop URL
-      */
-
-
-      axios.post("/file-drag-drop", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        },
-        onUploadProgress: function (progressEvent) {
-          this.uploadPercentage = parseInt(Math.round(progressEvent.loaded * 100 / progressEvent.total));
-        }.bind(this)
-      }).then(function () {
-        console.log("SUCCESS!!");
-      })["catch"](function () {
-        console.log("FAILURE!!");
-      });
-    },
-
-    /*
     Removes a select file the user has uploaded
     */
     removeFile: function removeFile(key) {
       this.files.splice(key, 1);
+    },
+    formatFileSize: function formatFileSize(bytes) {
+      var sufixes = ["B", "kB", "MB", "GB", "TB"];
+      var i = Math.floor(Math.log(bytes) / Math.log(1024));
+      return "".concat((bytes / Math.pow(1024, i)).toFixed(2), " ").concat(sufixes[i]);
     }
   }
 });
@@ -25368,16 +25339,26 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("main", [_c("div", {
-    staticClass: "first-section text-center mt-5 mb-5"
+  return _c("main", [_c("form", {
+    staticClass: "first-section text-center mt-5 mb-5",
+    attrs: {
+      method: "post",
+      enctype: "multipart/form-data"
+    }
   }, [_c("h1", {
     staticClass: "fw-bold"
   }, [_vm._v("Convertitore file")]), _vm._v(" "), _c("p", [_vm._v("\n            Converti file, documenti, immagini, video, audio, siti web e\n            altro ancora in qualsiasi formato.\n        ")]), _vm._v(" "), _c("div", {
-    staticClass: "container bg-lightblue text-center mt-5 border-3 border-primary rounded border-dashed w-75",
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.files <= 0,
+      expression: "files <= 0"
+    }],
+    staticClass: "container bg-lightblue text-center mt-5 border-3 border-primary rounded border-dashed",
     attrs: {
-      id: "file-drag-drop "
+      id: "file-drag-drop"
     }
-  }, [_c("form", {
+  }, [_c("div", {
     ref: "fileform"
   }, [_c("img", {
     staticClass: "mt-4",
@@ -25391,19 +25372,22 @@ var render = function render() {
     staticClass: "mt-3"
   }, [_vm._v("oppure")]), _vm._v(" "), _c("div", {
     staticClass: "bg-white w-50 mx-auto p-2 mt-3 rounded"
-  }, [_vm._m(0), _vm._v(" "), _c("label", {
-    staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
-  }, [_c("font-awesome-icon", {
-    attrs: {
-      icon: "fa-solid fa-folder-plus "
-    }
-  }), _vm._v(" "), _c("input", {
+  }, [_c("label", {
+    staticClass: "btn btn-default btn-file fw-bold"
+  }, [_vm._v("\n                        Scegli i file\n                        "), _c("input", {
+    ref: "fileform2",
     staticStyle: {
       display: "none"
     },
     attrs: {
       type: "file",
-      required: ""
+      name: "File"
+    }
+  })]), _vm._v(" "), _c("label", {
+    staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
+  }, [_c("font-awesome-icon", {
+    attrs: {
+      icon: "fa-solid fa-folder-plus "
     }
   })], 1), _vm._v(" "), _c("label", {
     staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
@@ -25411,27 +25395,11 @@ var render = function render() {
     attrs: {
       icon: "fa-brands fa-dropbox "
     }
-  }), _vm._v(" "), _c("input", {
-    staticStyle: {
-      display: "none"
-    },
-    attrs: {
-      type: "file",
-      required: ""
-    }
   })], 1), _vm._v(" "), _c("label", {
     staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
   }, [_c("font-awesome-icon", {
     attrs: {
       icon: "fa-brands fa-google-drive "
-    }
-  }), _vm._v(" "), _c("input", {
-    staticStyle: {
-      display: "none"
-    },
-    attrs: {
-      type: "file",
-      required: ""
     }
   })], 1), _vm._v(" "), _c("label", {
     staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
@@ -25439,15 +25407,7 @@ var render = function render() {
     attrs: {
       icon: "fa-solid fa-cloud "
     }
-  }), _vm._v(" "), _c("input", {
-    staticStyle: {
-      display: "none"
-    },
-    attrs: {
-      type: "file",
-      required: ""
-    }
-  })], 1)]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("progress", {
+  })], 1)]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("progress", {
     staticClass: "d-none",
     attrs: {
       max: "100"
@@ -25455,38 +25415,137 @@ var render = function render() {
     domProps: {
       value: _vm.uploadPercentage
     }
-  }), _vm._v(" "), _vm._l(_vm.files, function (file, key) {
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "conversion"
+  }, _vm._l(_vm.files, function (file, key) {
     return _c("div", {
       key: file.index,
-      staticClass: "file-listing mt-5 mb-5"
-    }, [_c("img", {
-      ref: "preview" + parseInt(key),
-      refInFor: true,
-      staticClass: "preview"
-    }), _vm._v("\n                " + _vm._s(file.name) + "\n                "), _c("div", {
+      staticClass: "file-listing mt-2 mb-2 bg-white container shadow d-flex justify-content-between align-items-center rounded border-custom"
+    }, [_c("span", {
+      staticClass: "fw-bold"
+    }, [_vm._v(_vm._s(file.name))]), _vm._v(" "), _c("div", {}, [_c("label", {
+      staticClass: "secondary_color me-1",
+      attrs: {
+        "for": "select"
+      }
+    }, [_vm._v("converti in\n                    ")]), _vm._v(" "), file.type === "image/png" ? _c("select", {
+      staticClass: "btn bg-select",
+      attrs: {
+        name: "select",
+        id: "select"
+      }
+    }, [_c("option", {
+      staticClass: "fw-bold",
+      attrs: {
+        value: "..."
+      }
+    }, [_vm._v("...")]), _vm._v(" "), _c("option", {
+      attrs: {
+        value: "jpg"
+      }
+    }, [_vm._v("jpg")]), _vm._v(" "), _c("option", {
+      attrs: {
+        value: "pdf"
+      }
+    }, [_vm._v("pdf")]), _vm._v(" "), _c("option", {
+      attrs: {
+        value: "pdfa"
+      }
+    }, [_vm._v("pdfa")]), _vm._v(" "), _c("option", {
+      attrs: {
+        value: "png"
+      }
+    }, [_vm._v("png")]), _vm._v(" "), _c("option", {
+      attrs: {
+        value: "svg"
+      }
+    }, [_vm._v("sgv")]), _vm._v(" "), _c("option", {
+      attrs: {
+        value: "tiff"
+      }
+    }, [_vm._v("tiff")]), _vm._v(" "), _c("option", {
+      attrs: {
+        value: "webp"
+      }
+    }, [_vm._v("webp")])]) : _vm._e()]), _vm._v(" "), _c("span", {
+      staticClass: "size_font"
+    }, [_vm._v(_vm._s(_vm.formatFileSize(file.size)))]), _vm._v(" "), _c("div", {
       staticClass: "remove-container"
     }, [_c("a", {
-      staticClass: "remove",
+      staticClass: "remove text-primary fw-bold",
       on: {
         click: function click($event) {
           return _vm.removeFile(key);
         }
       }
-    }, [_vm._v("Remove")])])]);
-  }), _vm._v(" "), _c("a", {
+    }, [_vm._v("X")])])]);
+  }), 0), _vm._v(" "), _c("div", {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.files.length > 0,
-      expression: "files.length > 0"
-    }],
-    staticClass: "submit-button",
-    on: {
-      click: function click($event) {
-        return _vm.submitFiles();
-      }
+      value: _vm.files >= _vm.files[0],
+      expression: "files >= files[0]"
+    }]
+  }, [_c("div", {
+    staticClass: "mt-2 mb-2 bg-select container shadow d-flex justify-content-between align-items-center rounded remove_gutter_x"
+  }, [_c("div", {
+    staticClass: "d-flex align-items-center"
+  }, [_c("label", {
+    staticClass: "btn btn-default btn-file fw-bold d-flex align-items-center"
+  }, [_c("span", {
+    staticClass: "pe-2 text-primary fw-bold fs-4"
+  }, [_vm._v("+")]), _vm._v("\n                        Aggiungi file\n                        "), _c("input", {
+    ref: "fileform3",
+    staticStyle: {
+      display: "none"
+    },
+    attrs: {
+      type: "file",
+      name: "File"
     }
-  }, [_vm._v("Submit")])], 2)]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex align-items-center"
+  }, [_c("label", {
+    staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
+  }, [_c("font-awesome-icon", {
+    attrs: {
+      icon: "fa-solid fa-folder-plus "
+    }
+  })], 1), _vm._v(" "), _c("label", {
+    staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
+  }, [_c("font-awesome-icon", {
+    attrs: {
+      icon: "fa-brands fa-dropbox "
+    }
+  })], 1), _vm._v(" "), _c("label", {
+    staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
+  }, [_c("font-awesome-icon", {
+    attrs: {
+      icon: "fa-brands fa-google-drive "
+    }
+  })], 1), _vm._v(" "), _c("label", {
+    staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
+  }, [_c("font-awesome-icon", {
+    attrs: {
+      icon: "fa-solid fa-cloud "
+    }
+  })], 1), _vm._v(" "), _c("label", {
+    staticClass: "btn fw-bold bg-convert text-white py-3 px-4"
+  }, [_vm._v("\n                        CONVERTI\n                        "), _c("font-awesome-icon", {
+    staticClass: "ps-1",
+    attrs: {
+      icon: "fa-solid fa-arrow-right-long"
+    }
+  }), _vm._v(" "), _c("input", {
+    staticClass: "btn",
+    staticStyle: {
+      display: "none"
+    },
+    attrs: {
+      type: "submit",
+      value: "Convert file"
+    }
+  })], 1)])])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "third-serction text-center mt-5"
   }, [_c("h2", {
     staticClass: "fw-bold pt-5"
@@ -25555,21 +25614,6 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("label", {
-    staticClass: "btn btn-default btn-file fw-bold"
-  }, [_vm._v("\n                        Scegli i file\n                        "), _c("input", {
-    staticStyle: {
-      display: "none"
-    },
-    attrs: {
-      type: "file",
-      required: ""
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("p", {
     staticClass: "mb-5 mt-2"
   }, [_vm._v("\n                    100 MB dimensione massima del file oppure\n                    "), _c("a", {
@@ -25577,6 +25621,13 @@ var staticRenderFns = [function () {
       href: "register"
     }
   }, [_vm._v("Registrati")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("p", {
+    staticClass: "size_font m-0"
+  }, [_vm._v("\n                        Utilizza Ctrl o Shift per selezionare "), _c("br"), _vm._v("\n                        più file contemporaneamente\n                    ")]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -30894,6 +30945,291 @@ defineJQueryPlugin(Toast);
 
 /***/ }),
 
+/***/ "./node_modules/convertapi-js/dist/convertapi.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/convertapi-js/dist/convertapi.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ConvertApi; });
+/* harmony import */ var _params_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./params.js */ "./node_modules/convertapi-js/dist/params.js");
+/* harmony import */ var _result_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./result.js */ "./node_modules/convertapi-js/dist/result.js");
+
+
+class ConvertApi {
+    constructor(credentials, host = 'v2.convertapi.com') {
+        this.credentials = credentials;
+        this.host = host;
+    }
+    static auth(credentials, host) {
+        return new ConvertApi(credentials, host);
+    }
+    createParams(init) {
+        return new _params_js__WEBPACK_IMPORTED_MODULE_0__["default"](this.host, init);
+    }
+    convert(fromFormat, toFormat, params) {
+        return Promise.resolve(params.dto)
+            .then(dto => {
+            let altConvParam = dto.Parameters.filter(p => p.Name.toLowerCase() == 'converter');
+            let converterPath = (altConvParam === null || altConvParam === void 0 ? void 0 : altConvParam.length) > 0 ? `/converter/${altConvParam[0].Value}` : '';
+            let auth = typeof this.credentials === 'string' ? `secret=${this.credentials}` : `apikey=${this.credentials.apiKey}&token=${this.credentials.token}`;
+            return fetch(`https://${this.host}/convert/${fromFormat}/to/${toFormat}${converterPath}?${auth}&storefile=true`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(dto) })
+                .then(r => Promise.all([r.ok, r.json()]))
+                .then(([ok, o]) => ok ? o : Promise.reject(o))
+                .then(dto => new _result_js__WEBPACK_IMPORTED_MODULE_1__["default"](dto));
+        });
+    }
+}
+//# sourceMappingURL=convertapi.js.map
+
+/***/ }),
+
+/***/ "./node_modules/convertapi-js/dist/file-param.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/convertapi-js/dist/file-param.js ***!
+  \*******************************************************/
+/*! exports provided: FileValue, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FileValue", function() { return FileValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FileParam; });
+class FileValue {
+    constructor(name, fileId) {
+        this.name = name;
+        this.fileId = fileId;
+    }
+}
+class FileParam {
+    constructor(name, file, host) {
+        this.name = name;
+        this.file = file;
+        this.host = host;
+    }
+    value() {
+        if (this.file instanceof FileValue) {
+            return Promise.resolve(this.file.fileId);
+        }
+        else {
+            let uploadUrl = `https://${this.host}/upload?`;
+            let response = this.file instanceof URL
+                ? fetch(`${uploadUrl}url=${encodeURIComponent(this.file.href)}`, { method: 'POST' })
+                : fetch(`${uploadUrl}filename=${encodeURIComponent(this.file.name)}`, { method: 'POST', body: this.file });
+            return response
+                .then(r => r.ok ? r.json() : Promise.reject({ Code: 5007, Message: `Unable to upload the file` }))
+                .then(obj => obj.FileId);
+        }
+    }
+    get dto() {
+        return this.value().then(v => ({
+            Name: this.name,
+            FileValue: { Id: v }
+        }));
+    }
+}
+//# sourceMappingURL=file-param.js.map
+
+/***/ }),
+
+/***/ "./node_modules/convertapi-js/dist/files-param.js":
+/*!********************************************************!*\
+  !*** ./node_modules/convertapi-js/dist/files-param.js ***!
+  \********************************************************/
+/*! exports provided: FilesValue, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilesValue", function() { return FilesValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FilesParam; });
+/* harmony import */ var _file_param_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./file-param.js */ "./node_modules/convertapi-js/dist/file-param.js");
+
+class FilesValue {
+    constructor(files) {
+        this.files = files;
+    }
+    asArray() {
+        return this.files.map(f => new _file_param_js__WEBPACK_IMPORTED_MODULE_0__["FileValue"](f.FileName, f.FileId));
+    }
+}
+class FilesParam {
+    constructor(name, files, host) {
+        this.name = name;
+        this.fileValPros = [];
+        if (files instanceof FileList) {
+            this.fileValPros = Array.from(files).map(f => new _file_param_js__WEBPACK_IMPORTED_MODULE_0__["default"](name, f, host).value().then(i => ({
+                Id: i
+            })));
+        }
+        else if (files instanceof FilesValue) {
+            this.fileValPros = files.asArray().map(f => Promise.resolve({
+                Id: f.fileId
+            }));
+        }
+        else {
+            this.fileValPros = files.map(f => Promise.resolve(f instanceof URL ? { Url: f.href } : { Id: f }));
+        }
+    }
+    get dto() {
+        return Promise.all(this.fileValPros).then(fv => ({
+            Name: this.name,
+            FileValues: fv
+        }));
+    }
+}
+//# sourceMappingURL=files-param.js.map
+
+/***/ }),
+
+/***/ "./node_modules/convertapi-js/dist/param.js":
+/*!**************************************************!*\
+  !*** ./node_modules/convertapi-js/dist/param.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Param; });
+class Param {
+    constructor(name, value) {
+        this.name = name;
+        this.value = value;
+    }
+    get dto() {
+        return Promise.resolve({
+            Name: this.name,
+            Value: this.value
+        });
+    }
+}
+//# sourceMappingURL=param.js.map
+
+/***/ }),
+
+/***/ "./node_modules/convertapi-js/dist/params.js":
+/*!***************************************************!*\
+  !*** ./node_modules/convertapi-js/dist/params.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Params; });
+/* harmony import */ var _param_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./param.js */ "./node_modules/convertapi-js/dist/param.js");
+/* harmony import */ var _file_param_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./file-param.js */ "./node_modules/convertapi-js/dist/file-param.js");
+/* harmony import */ var _files_param_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./files-param.js */ "./node_modules/convertapi-js/dist/files-param.js");
+
+
+
+class Params {
+    constructor(host, init) {
+        this.host = host;
+        this.params = [];
+        let param;
+        init === null || init === void 0 ? void 0 : init.forEach(p => {
+            if (p.isFile) {
+                if (typeof (p.value) === 'string') {
+                    param = new _file_param_js__WEBPACK_IMPORTED_MODULE_1__["default"](p.name, new _file_param_js__WEBPACK_IMPORTED_MODULE_1__["FileValue"]('', p.value), this.host);
+                }
+                else {
+                    param = p.value instanceof Array
+                        ? new _files_param_js__WEBPACK_IMPORTED_MODULE_2__["default"](p.name, p.value, this.host)
+                        : param = new _file_param_js__WEBPACK_IMPORTED_MODULE_1__["default"](p.name, p.value, this.host);
+                }
+            }
+            else {
+                param = new _param_js__WEBPACK_IMPORTED_MODULE_0__["default"](p.name, p.value);
+            }
+            this.params.push(param);
+        });
+    }
+    add(name, value) {
+        let param;
+        if (value instanceof _files_param_js__WEBPACK_IMPORTED_MODULE_2__["FilesValue"] || value instanceof FileList || value instanceof Array) {
+            param = new _files_param_js__WEBPACK_IMPORTED_MODULE_2__["default"](name, value, this.host);
+        }
+        else if (value instanceof _file_param_js__WEBPACK_IMPORTED_MODULE_1__["FileValue"] || value instanceof File || value instanceof URL) {
+            param = new _file_param_js__WEBPACK_IMPORTED_MODULE_1__["default"](name, value, this.host);
+        }
+        else {
+            param = new _param_js__WEBPACK_IMPORTED_MODULE_0__["default"](name, value);
+        }
+        this.params.push(param);
+        return param;
+    }
+    get(name) {
+        return this.params.find(p => p.name === name);
+    }
+    delete(name) {
+        let idx = this.params.findIndex(p => p.name === name);
+        return this.params.splice(idx, 1)[0];
+    }
+    get dto() {
+        let dtoPros = this.params.map(p => p.dto);
+        return Promise.all(dtoPros).then(ds => ({ Parameters: ds }));
+    }
+}
+//# sourceMappingURL=params.js.map
+
+/***/ }),
+
+/***/ "./node_modules/convertapi-js/dist/result.js":
+/*!***************************************************!*\
+  !*** ./node_modules/convertapi-js/dist/result.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Result; });
+/* harmony import */ var _file_param_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./file-param.js */ "./node_modules/convertapi-js/dist/file-param.js");
+/* harmony import */ var _files_param_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./files-param.js */ "./node_modules/convertapi-js/dist/files-param.js");
+
+
+class Result {
+    constructor(dto) {
+        this.dto = dto;
+    }
+    get duration() {
+        return this.dto.ConversionCost;
+    }
+    get files() {
+        return this.dto.Files;
+    }
+    toParamFile(idx = 0) {
+        return new _file_param_js__WEBPACK_IMPORTED_MODULE_0__["FileValue"](this.dto.Files[idx].FileName, this.dto.Files[idx].FileId);
+    }
+    toParamFiles() {
+        return new _files_param_js__WEBPACK_IMPORTED_MODULE_1__["FilesValue"](this.dto.Files);
+    }
+    uploadToS3(region, bucket, accessKeyId, secretAccessKey) {
+        return this.dto.Files.map(f => {
+            let dto = {
+                region: region,
+                bucket: bucket,
+                accessKeyId: accessKeyId,
+                secretAccessKey: secretAccessKey,
+                fileId: f.FileId
+            };
+            return fetch(`https://integration.convertapi.com/s3/upload`, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(dto)
+            });
+        });
+    }
+}
+//# sourceMappingURL=result.js.map
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/App.vue?vue&type=style&index=0&id=91ac6b5c&lang=scss&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/App.vue?vue&type=style&index=0&id=91ac6b5c&lang=scss&scoped=true& ***!
@@ -30906,7 +31242,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".custom-color[data-v-91ac6b5c] {\n  color: #2a67eb;\n}\n.custom-icon-color[data-v-91ac6b5c] {\n  color: #9ebbfa;\n}\n.custom-icon-color[data-v-91ac6b5c]:hover {\n  color: #2a67eb;\n}\n\n/* stat form  */\np[data-v-91ac6b5c] {\n  color: #818498;\n}\nh2[data-v-91ac6b5c] {\n  color: #1f0f4d;\n}\nh5[data-v-91ac6b5c] {\n  color: #040b38;\n}\n.first-section[data-v-91ac6b5c] {\n  width: 100%;\n  background-color: #fafcff;\n  background-image: url(\"/img/background-main.png\");\n}\n.first-section h1[data-v-91ac6b5c] {\n  font-size: 64px;\n  color: #040b38;\n}\n.first-section .border-dashed[data-v-91ac6b5c] {\n  border-style: dashed;\n}\n.first-section .bg-lightblue[data-v-91ac6b5c] {\n  background-color: #e4ecfc;\n}\ndiv.file-listing[data-v-91ac6b5c] {\n  width: 400px;\n  margin: auto;\n  padding: 10px;\n  border-bottom: 1px solid #ddd;\n}\ndiv.file-listing img[data-v-91ac6b5c] {\n  height: 100px;\n}\ndiv.remove-container[data-v-91ac6b5c] {\n  text-align: center;\n}\ndiv.remove-container a[data-v-91ac6b5c] {\n  color: red;\n  cursor: pointer;\n}\na.submit-button[data-v-91ac6b5c] {\n  display: block;\n  margin: auto;\n  text-align: center;\n  width: 200px;\n  padding: 10px;\n  text-transform: uppercase;\n  background-color: #ccc;\n  color: white;\n  font-weight: bold;\n  margin-top: 20px;\n}\nprogress[data-v-91ac6b5c] {\n  width: 400px;\n  margin: auto;\n  display: block;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n/* ^ end form */", ""]);
+exports.push([module.i, ".custom-color[data-v-91ac6b5c] {\n  color: #2a67eb;\n}\n.custom-icon-color[data-v-91ac6b5c] {\n  color: #9ebbfa;\n}\n.custom-icon-color[data-v-91ac6b5c]:hover {\n  color: #2a67eb;\n}\n\n/* stat form  */\np[data-v-91ac6b5c] {\n  color: #818498;\n}\nh2[data-v-91ac6b5c] {\n  color: #1f0f4d;\n}\nh5[data-v-91ac6b5c] {\n  color: #040b38;\n}\n.first-section[data-v-91ac6b5c] {\n  width: 100%;\n  background-color: #fafcff;\n  background-image: url(\"/img/background-main.png\");\n}\n.first-section h1[data-v-91ac6b5c] {\n  font-size: 64px;\n  color: #040b38;\n}\n.first-section .border-dashed[data-v-91ac6b5c] {\n  border-style: dashed;\n}\n.first-section .bg-lightblue[data-v-91ac6b5c] {\n  background-color: #e4ecfc;\n}\ndiv.file-listing[data-v-91ac6b5c] {\n  margin: auto;\n  padding: 10px;\n  border-bottom: 1px solid #ddd;\n}\ndiv.remove-container a[data-v-91ac6b5c] {\n  text-decoration: none;\n  cursor: pointer;\n}\nprogress[data-v-91ac6b5c] {\n  width: 400px;\n  margin: auto;\n  display: block;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n/* ^ end form */\n.secondary_color[data-v-91ac6b5c] {\n  color: #818498;\n}\n.size_font[data-v-91ac6b5c] {\n  font-size: 12px;\n  color: #818498;\n}\n.bg-select[data-v-91ac6b5c] {\n  background-color: #e4ecfc;\n}\n.border-custom[data-v-91ac6b5c] {\n  border: 1px solid #e4ecfc;\n}\n.bg-convert[data-v-91ac6b5c] {\n  background-color: #9ebbfa;\n}\n.remove_gutter_x[data-v-91ac6b5c] {\n  --bs-gutter-x: 0;\n}", ""]);
 
 // exports
 
@@ -74766,7 +75102,7 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /* add icons to the library */
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faFolderPlus"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faDropbox"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faGoogleDrive"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCloud"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faRotate"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faGear"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCloudArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faShieldVirus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faDesktop"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAngleRight"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faFolderPlus"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faDropbox"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faGoogleDrive"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCloud"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faRotate"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faGear"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faCloudArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faShieldVirus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faDesktop"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowRightLong"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAngleRight"]);
 /* add font awesome icon component */
 
 Vue.component("font-awesome-icon", _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"]);

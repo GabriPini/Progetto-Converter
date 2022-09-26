@@ -29,6 +29,7 @@ import {
     faShieldVirus,
     faDesktop,
     faAngleRight,
+    faArrowRightLong,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faStar } from "@fortawesome/free-regular-svg-icons";
@@ -45,6 +46,7 @@ library.add(
     faCloudArrowUp,
     faShieldVirus,
     faDesktop,
+    faArrowRightLong,
     faAngleRight
 );
 

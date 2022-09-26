@@ -2,7 +2,11 @@
     <main>
         <!-- Prima sezione del sito contenente l'area per la conversione file -->
 
-        <div class="first-section text-center mt-5 mb-5">
+        <form
+            class="first-section text-center mt-5 mb-5"
+            method="post"
+            enctype="multipart/form-data"
+        >
             <h1 class="fw-bold">Convertitore file</h1>
             <p>
                 Converti file, documenti, immagini, video, audio, siti web e
@@ -10,17 +14,23 @@
             </p>
 
             <div
-                id="file-drag-drop "
-                class="container bg-lightblue text-center mt-5 border-3 border-primary rounded border-dashed w-75"
+                id="file-drag-drop"
+                class="container bg-lightblue text-center mt-5 border-3 border-primary rounded border-dashed"
+                v-show="files <= 0"
             >
-                <form ref="fileform">
+                <div ref="fileform">
                     <img class="mt-4" src="img/cloud.png" alt="" />
                     <h5 class="fw-bold mt-1">Trascina qui il tuo file</h5>
                     <span class="mt-3">oppure</span>
                     <div class="bg-white w-50 mx-auto p-2 mt-3 rounded">
                         <label class="btn btn-default btn-file fw-bold">
                             Scegli i file
-                            <input type="file" style="display: none" required />
+                            <input
+                                type="file"
+                                name="File"
+                                style="display: none"
+                                ref="fileform2"
+                            />
                         </label>
 
                         <label
@@ -29,13 +39,11 @@
                             <font-awesome-icon
                                 icon="fa-solid fa-folder-plus "
                             />
-                            <input type="file" style="display: none" required />
                         </label>
                         <label
                             class="btn btn-default btn-file fw-bold custom-icon-color"
                         >
                             <font-awesome-icon icon="fa-brands fa-dropbox " />
-                            <input type="file" style="display: none" required />
                         </label>
                         <label
                             class="btn btn-default btn-file fw-bold custom-icon-color"
@@ -43,52 +51,134 @@
                             <font-awesome-icon
                                 icon="fa-brands fa-google-drive "
                             />
-                            <input type="file" style="display: none" required />
                         </label>
                         <label
                             class="btn btn-default btn-file fw-bold custom-icon-color"
                         >
                             <font-awesome-icon icon="fa-solid fa-cloud " />
-                            <input type="file" style="display: none" required />
                         </label>
                     </div>
                     <p class="mb-5 mt-2">
                         100 MB dimensione massima del file oppure
                         <a href="register">Registrati</a>
                     </p>
-                </form>
+                </div>
 
                 <progress
                     max="100"
                     :value.prop="uploadPercentage"
                     class="d-none"
                 ></progress>
-
+            </div>
+            <div class="conversion">
                 <div
                     v-for="(file, key) in files"
-                    class="file-listing mt-5 mb-5"
+                    class="file-listing mt-2 mb-2 bg-white container shadow d-flex justify-content-between align-items-center rounded border-custom"
                     :key="file.index"
                 >
-                    <img
-                        class="preview"
-                        v-bind:ref="'preview' + parseInt(key)"
-                    />
-                    {{ file.name }}
+                    <span class="fw-bold">{{ file.name }}</span>
+                    <div class="">
+                        <label for="select" class="secondary_color me-1"
+                            >converti in
+                        </label>
+                        <select
+                            name="select"
+                            id="select"
+                            class="btn bg-select"
+                            v-if="file.type === 'image/png'"
+                        >
+                            <option value="..." class="fw-bold">...</option>
+                            <option value="jpg">jpg</option>
+                            <option value="pdf">pdf</option>
+                            <option value="pdfa">pdfa</option>
+                            <option value="png">png</option>
+                            <option value="svg">sgv</option>
+                            <option value="tiff">tiff</option>
+                            <option value="webp">webp</option>
+                        </select>
+                    </div>
+
+                    <span class="size_font">{{
+                        formatFileSize(file.size)
+                    }}</span>
+
                     <div class="remove-container">
-                        <a class="remove" v-on:click="removeFile(key)"
-                            >Remove</a
+                        <a
+                            class="remove text-primary fw-bold"
+                            v-on:click="removeFile(key)"
+                            >X</a
                         >
                     </div>
                 </div>
-
-                <a
-                    class="submit-button"
-                    v-on:click="submitFiles()"
-                    v-show="files.length > 0"
-                    >Submit</a
-                >
             </div>
-        </div>
+            <div v-show="files >= files[0]">
+                <div
+                    class="mt-2 mb-2 bg-select container shadow d-flex justify-content-between align-items-center rounded remove_gutter_x"
+                >
+                    <div class="d-flex align-items-center">
+                        <label
+                            class="btn btn-default btn-file fw-bold d-flex align-items-center"
+                        >
+                            <span class="pe-2 text-primary fw-bold fs-4"
+                                >+</span
+                            >
+                            Aggiungi file
+                            <input
+                                type="file"
+                                name="File"
+                                style="display: none"
+                                ref="fileform3"
+                            />
+                        </label>
+                        <p class="size_font m-0">
+                            Utilizza Ctrl o Shift per selezionare <br />
+                            più file contemporaneamente
+                        </p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label
+                            class="btn btn-default btn-file fw-bold custom-icon-color"
+                        >
+                            <font-awesome-icon
+                                icon="fa-solid fa-folder-plus "
+                            />
+                        </label>
+                        <label
+                            class="btn btn-default btn-file fw-bold custom-icon-color"
+                        >
+                            <font-awesome-icon icon="fa-brands fa-dropbox " />
+                        </label>
+                        <label
+                            class="btn btn-default btn-file fw-bold custom-icon-color"
+                        >
+                            <font-awesome-icon
+                                icon="fa-brands fa-google-drive "
+                            />
+                        </label>
+                        <label
+                            class="btn btn-default btn-file fw-bold custom-icon-color"
+                        >
+                            <font-awesome-icon icon="fa-solid fa-cloud " />
+                        </label>
+                        <label
+                            class="btn fw-bold bg-convert text-white py-3 px-4"
+                        >
+                            CONVERTI
+                            <font-awesome-icon
+                                class="ps-1"
+                                icon="fa-solid fa-arrow-right-long"
+                            />
+                            <input
+                                class="btn"
+                                type="submit"
+                                value="Convert file"
+                                style="display: none"
+                            />
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </form>
         <!-- Seconda parte del sito contente la spiegazione di come funziona il programma -->
         <div class="second-section text-center mt-5 bg-white">
             <h2 class="fw-bold pt-5">Come funziona?</h2>
@@ -241,6 +331,8 @@
 </template>
 
 <script>
+import ConvertApi from "convertapi-js";
+
 export default {
     name: "App",
 
@@ -249,6 +341,7 @@ export default {
     */
     data() {
         return {
+            convertApi: ConvertApi.auth("ltE5TH69gYyu4IKI"),
             dragAndDropCapable: false,
             files: [],
             uploadPercentage: 0,
@@ -270,6 +363,7 @@ export default {
           for the fileform.
         */
             [
+                "change",
                 "drag",
                 "dragstart",
                 "dragend",
@@ -292,6 +386,24 @@ export default {
                         }.bind(this),
                         false
                     );
+
+                    this.$refs.fileform2.addEventListener(
+                        evt,
+                        function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }.bind(this),
+                        false
+                    );
+
+                    this.$refs.fileform3.addEventListener(
+                        evt,
+                        function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }.bind(this),
+                        false
+                    );
                 }.bind(this)
             );
 
@@ -300,6 +412,7 @@ export default {
         */
             this.$refs.fileform.addEventListener(
                 "drop",
+
                 function (e) {
                     /*
             Capture the files from the drop event and add them to our local files
@@ -307,14 +420,32 @@ export default {
           */
                     for (let i = 0; i < e.dataTransfer.files.length; i++) {
                         this.files.push(e.dataTransfer.files[i]);
-                        this.getImagePreviews();
                     }
+                }.bind(this)
+            );
+            this.$refs.fileform2.addEventListener(
+                "change",
+                function () {
+                    console.log(this.$refs.fileform2.files[0]);
+                    this.files.push(this.$refs.fileform2.files[0]);
+                }.bind(this)
+            );
+            this.$refs.fileform3.addEventListener(
+                "change",
+                function () {
+                    console.log(this.$refs.fileform3.files[0]);
+                    this.files.push(this.$refs.fileform3.files[0]);
                 }.bind(this)
             );
         }
     },
 
     methods: {
+        async apiCall() {
+            let params = convertApi.createParams();
+            params.add("Files", elFileInput.files);
+            let result = await convertApi.convert("any", "zip", params);
+        },
         /*
         Determines if the drag and drop functionality is in the
         window
@@ -343,102 +474,16 @@ export default {
         },
 
         /*
-        Gets the image preview for the file.
-      */
-        getImagePreviews() {
-            /*
-          Iterate over all of the files and generate an image preview for each one.
-        */
-            for (let i = 0; i < this.files.length; i++) {
-                /*
-            Ensure the file is an image file
-          */
-                if (/\.(jpe?g|png|gif)$/i.test(this.files[i].name)) {
-                    /*
-              Create a new FileReader object
-            */
-                    let reader = new FileReader();
-
-                    /*
-              Add an event listener for when the file has been loaded
-              to update the src on the file preview.
-            */
-                    reader.addEventListener(
-                        "load",
-                        function () {
-                            this.$refs["preview" + parseInt(i)][0].src =
-                                reader.result;
-                        }.bind(this),
-                        false
-                    );
-
-                    /*
-              Read the data for the file in through the reader. When it has
-              been loaded, we listen to the event propagated and set the image
-              src to what was loaded from the reader.
-            */
-                    reader.readAsDataURL(this.files[i]);
-                } else {
-                    /*
-              We do the next tick so the reference is bound and we can access it.
-            */
-                    this.$nextTick(function () {
-                        this.$refs["preview" + parseInt(i)][0].src =
-                            "/images/file.png";
-                    });
-                }
-            }
-        },
-
-        /*
-        Submits the files to the server
-      */
-        submitFiles() {
-            /*
-          Initialize the form data
-        */
-            let formData = new FormData();
-
-            /*
-          Iteate over any file sent over appending the files
-          to the form data.
-        */
-            for (var i = 0; i < this.files.length; i++) {
-                let file = this.files[i];
-
-                formData.append("files[" + i + "]", file);
-            }
-
-            /*
-          Make the request to the POST /file-drag-drop URL
-        */
-            axios
-                .post("/file-drag-drop", formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                    onUploadProgress: function (progressEvent) {
-                        this.uploadPercentage = parseInt(
-                            Math.round(
-                                (progressEvent.loaded * 100) /
-                                    progressEvent.total
-                            )
-                        );
-                    }.bind(this),
-                })
-                .then(function () {
-                    console.log("SUCCESS!!");
-                })
-                .catch(function () {
-                    console.log("FAILURE!!");
-                });
-        },
-
-        /*
         Removes a select file the user has uploaded
       */
         removeFile(key) {
             this.files.splice(key, 1);
+        },
+
+        formatFileSize(bytes) {
+            const sufixes = ["B", "kB", "MB", "GB", "TB"];
+            const i = Math.floor(Math.log(bytes) / Math.log(1024));
+            return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${sufixes[i]}`;
         },
     },
 };
@@ -485,36 +530,14 @@ h5 {
 }
 
 div.file-listing {
-    width: 400px;
     margin: auto;
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
-div.file-listing img {
-    height: 100px;
-}
-
-div.remove-container {
-    text-align: center;
-}
-
 div.remove-container a {
-    color: red;
+    text-decoration: none;
     cursor: pointer;
-}
-
-a.submit-button {
-    display: block;
-    margin: auto;
-    text-align: center;
-    width: 200px;
-    padding: 10px;
-    text-transform: uppercase;
-    background-color: #ccc;
-    color: white;
-    font-weight: bold;
-    margin-top: 20px;
 }
 
 progress {
@@ -526,4 +549,27 @@ progress {
 }
 
 /* ^ end form */
+.secondary_color {
+    color: #818498;
+}
+
+.size_font {
+    font-size: 12px;
+    color: #818498;
+}
+
+.bg-select {
+    background-color: #e4ecfc;
+}
+.border-custom {
+    border: 1px solid #e4ecfc;
+}
+
+.bg-convert {
+    background-color: #9ebbfa;
+}
+
+.remove_gutter_x {
+    --bs-gutter-x: 0;
+}
 </style>

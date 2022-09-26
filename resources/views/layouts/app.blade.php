@@ -16,6 +16,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -63,9 +65,7 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link fw-bold bg-custom rounded" href="{{ route('register') }}">{{ __('Registrati') }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                                        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                                      </svg></a>
+                                    <a class="nav-link fw-bold bg-custom rounded" href="{{ route('register') }}">{{ __('Registrati') }}<i class=" fw-bolder ps-1  fa-solid fa-xs  fa-angle-right"></i></a>
                                 </li>
                             @endif
                         @else
@@ -100,7 +100,7 @@
             <div class="">
                 <div class="container pt-5 d-flex justify-content-between">
 
-                    <a class="navbar-brand me-5 " href="{{ url('/') }}">
+                    <div class="navbar-brand me-5 ">
                         {{-- logo ricavato dal file figma --}}
                         <img src="{{asset('img/logo2.png')}}" alt="">
                         <img src="{{asset('img/logo-name2.png')}}" alt="">
@@ -109,7 +109,7 @@
                             audio, siti web e altro ancora online.</p>
                             <span>info@convertydocs.com</span>
 
-                    </a>
+                    </div>
 
 
                         <div class="col d-flex flex-column mt-2">
@@ -138,8 +138,8 @@
                     <div class="container ">
                         <hr >
                         <div class="d-flex justify-content-center">
-                            <span class=""> © Doc Converter 2022</span>
-                            <span class="ms-5">  italiano</span>
+                            <span class="text-center ms-auto"> © Doc Converter 2022</span>
+                            <span class="ms-auto"> <i class="fa-solid fa-globe pe-1"></i>  italiano  <i class="fa-solid fa-sm fa-angle-up ps-1"></i></span>
 
                         </div>
                     </div>
