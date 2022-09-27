@@ -25161,7 +25161,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       dragAndDropCapable: false,
       files: [],
-      uploadPercentage: 0
+      uploadPercentage: 0,
+      fileUrl: false
     };
   },
   mounted: function mounted() {
@@ -25234,7 +25235,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 1:
                 if (!(i < _this.files.length)) {
-                  _context.next = 19;
+                  _context.next = 20;
                   break;
                 }
 
@@ -25261,14 +25262,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 console.log(url);
                 donwloadBtn.href = url;
+                _this.fileUrl = true;
                 console.log(donwloadBtn);
 
-              case 16:
+              case 17:
                 i++;
                 _context.next = 1;
                 break;
 
-              case 19:
+              case 20:
               case "end":
                 return _context.stop();
             }
@@ -25473,18 +25475,31 @@ var render = function render() {
     }, [_vm._v(_vm._s(_vm.formatFileSize(file.size)))]), _vm._v(" "), _c("div", {
       staticClass: "remove-container"
     }, [_c("a", {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: _vm.fileUrl,
+        expression: "fileUrl"
+      }],
+      staticClass: "remove text-primary fw-bold",
+      attrs: {
+        href: "#",
+        id: "donwloadButton"
+      }
+    }, [_vm._v("⬇️")]), _vm._v(" "), _c("a", {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: !_vm.fileUrl,
+        expression: "!fileUrl"
+      }],
       staticClass: "remove text-primary fw-bold",
       on: {
         click: function click($event) {
           return _vm.removeFile(key);
         }
       }
-    }, [_vm._v("X")]), _vm._v(" "), _c("a", {
-      staticClass: "remove text-primary fw-bold",
-      attrs: {
-        id: "donwloadButton"
-      }
-    }, [_vm._v("⬇️")])])]);
+    }, [_vm._v("X")])])]);
   }), 0), _vm._v(" "), _c("div", {
     directives: [{
       name: "show",

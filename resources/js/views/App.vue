@@ -111,15 +111,17 @@
 
                     <div class="remove-container">
                         <a
+                            v-show="fileUrl"
+                            class="remove text-primary fw-bold"
+                            href="#"
+                            id="donwloadButton"
+                            >⬇️</a
+                        >
+                        <a
+                            v-show="!fileUrl"
                             class="remove text-primary fw-bold"
                             v-on:click="removeFile(key)"
                             >X</a
-                        >
-
-                        <a
-                            class="remove text-primary fw-bold"
-                            id="donwloadButton"
-                            >⬇️</a
                         >
                     </div>
                 </div>
@@ -359,6 +361,7 @@ export default {
             dragAndDropCapable: false,
             files: [],
             uploadPercentage: 0,
+            fileUrl: false,
         };
     },
 
@@ -479,6 +482,7 @@ export default {
                 console.log(url); */
                 console.log(url);
                 donwloadBtn.href = url;
+                this.fileUrl = true;
                 console.log(donwloadBtn);
             }
         },
