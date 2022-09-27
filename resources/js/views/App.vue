@@ -4,8 +4,9 @@
 
         <form
             class="first-section text-center mt-5 mb-5"
-            method="post"
+            method="get"
             enctype="multipart/form-data"
+            @submit.prevent="apiCall"
         >
             <h1 class="fw-bold">Convertitore file</h1>
             <p>
@@ -26,6 +27,7 @@
                         <label class="btn btn-default btn-file fw-bold">
                             Scegli i file
                             <input
+                                value="Convert file"
                                 type="file"
                                 name="File"
                                 style="display: none"
@@ -77,25 +79,30 @@
                     :key="file.index"
                 >
                     <span class="fw-bold">{{ file.name }}</span>
-                    <div class="">
+                    <div
+                        class=""
+                        v-if="
+                            file.type.split('/')[1] === 'pdf' ||
+                            file.type.split('/')[1] === 'doc'
+                        "
+                    >
                         <label for="select" class="secondary_color me-1"
                             >converti in
                         </label>
-                        <select
-                            name="select"
-                            id="select"
-                            class="btn bg-select"
-                            v-if="file.type === 'image/png'"
-                        >
+                        <select name="select" id="select" class="btn bg-select">
                             <option value="..." class="fw-bold">...</option>
+                            <option value="doc">doc</option>
+                            <option value="docx">docx</option>
                             <option value="jpg">jpg</option>
-                            <option value="pdf">pdf</option>
-                            <option value="pdfa">pdfa</option>
                             <option value="png">png</option>
-                            <option value="svg">sgv</option>
-                            <option value="tiff">tiff</option>
-                            <option value="webp">webp</option>
+                            <option value="html">html</option>
                         </select>
+                    </div>
+
+                    <div class="" v-else>
+                        <strong class="text-danger"
+                            >Seleziona un file pdf o doc per la conversione
+                        </strong>
                     </div>
 
                     <span class="size_font">{{
@@ -107,6 +114,12 @@
                             class="remove text-primary fw-bold"
                             v-on:click="removeFile(key)"
                             >X</a
+                        >
+
+                        <a
+                            class="remove text-primary fw-bold"
+                            id="donwloadButton"
+                            >⬇️</a
                         >
                     </div>
                 </div>
@@ -124,6 +137,7 @@
                             >
                             Aggiungi file
                             <input
+                                value="Convert file"
                                 type="file"
                                 name="File"
                                 style="display: none"
@@ -171,6 +185,7 @@
                             <input
                                 class="btn"
                                 type="submit"
+                                @submit="apiCall"
                                 value="Convert file"
                                 style="display: none"
                             />
@@ -341,7 +356,6 @@ export default {
     */
     data() {
         return {
-            convertApi: ConvertApi.auth("ltE5TH69gYyu4IKI"),
             dragAndDropCapable: false,
             files: [],
             uploadPercentage: 0,
@@ -442,9 +456,31 @@ export default {
 
     methods: {
         async apiCall() {
-            let params = convertApi.createParams();
-            params.add("Files", elFileInput.files);
-            let result = await convertApi.convert("any", "zip", params);
+            for (let i = 0; i < this.files.length; i++) {
+                let donwloadBtn = document.getElementById("donwloadButton");
+                let convertApi = ConvertApi.auth("ltE5TH69gYyu4IKI");
+                let userSelect = document.getElementById("select").value;
+                let userFile = this.files[i].type.split("/")[1];
+                let params = convertApi.createParams();
+                params.add("File", this.files[0]);
+                console.log(params);
+                let result = await convertApi.convert(
+                    userFile,
+                    userSelect,
+                    params
+                );
+                let url = result.files[i].Url;
+                /* let url =
+                    "https://v2.convertapi.com/convert/" +
+                    userFile +
+                    "/to/" +
+                    userSelect +
+                    "?Secret=ltE5TH69gYyu4IKI&Token=188598682&Storefile=true";
+                console.log(url); */
+                console.log(url);
+                donwloadBtn.href = url;
+                console.log(donwloadBtn);
+            }
         },
         /*
         Determines if the drag and drop functionality is in the

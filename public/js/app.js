@@ -25159,7 +25159,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   */
   data: function data() {
     return {
-      convertApi: convertapi_js__WEBPACK_IMPORTED_MODULE_0__["default"].auth("ltE5TH69gYyu4IKI"),
       dragAndDropCapable: false,
       files: [],
       uploadPercentage: 0
@@ -25223,21 +25222,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     apiCall: function apiCall() {
+      var _this = this;
+
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var params, result;
+        var i, donwloadBtn, convertApi, userSelect, userFile, params, result, url;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                i = 0;
+
+              case 1:
+                if (!(i < _this.files.length)) {
+                  _context.next = 19;
+                  break;
+                }
+
+                donwloadBtn = document.getElementById("donwloadButton");
+                convertApi = convertapi_js__WEBPACK_IMPORTED_MODULE_0__["default"].auth("ltE5TH69gYyu4IKI");
+                userSelect = document.getElementById("select").value;
+                userFile = _this.files[i].type.split("/")[1];
                 params = convertApi.createParams();
-                params.add("Files", elFileInput.files);
-                _context.next = 4;
-                return convertApi.convert("any", "zip", params);
+                params.add("File", _this.files[0]);
+                console.log(params);
+                _context.next = 11;
+                return convertApi.convert(userFile, userSelect, params);
 
-              case 4:
+              case 11:
                 result = _context.sent;
+                url = result.files[i].Url;
+                /* let url =
+                    "https://v2.convertapi.com/convert/" +
+                    userFile +
+                    "/to/" +
+                    userSelect +
+                    "?Secret=ltE5TH69gYyu4IKI&Token=188598682&Storefile=true";
+                console.log(url); */
 
-              case 5:
+                console.log(url);
+                donwloadBtn.href = url;
+                console.log(donwloadBtn);
+
+              case 16:
+                i++;
+                _context.next = 1;
+                break;
+
+              case 19:
               case "end":
                 return _context.stop();
             }
@@ -25342,8 +25373,14 @@ var render = function render() {
   return _c("main", [_c("form", {
     staticClass: "first-section text-center mt-5 mb-5",
     attrs: {
-      method: "post",
+      method: "get",
       enctype: "multipart/form-data"
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.apiCall.apply(null, arguments);
+      }
     }
   }, [_c("h1", {
     staticClass: "fw-bold"
@@ -25380,6 +25417,7 @@ var render = function render() {
       display: "none"
     },
     attrs: {
+      value: "Convert file",
       type: "file",
       name: "File"
     }
@@ -25423,51 +25461,14 @@ var render = function render() {
       staticClass: "file-listing mt-2 mb-2 bg-white container shadow d-flex justify-content-between align-items-center rounded border-custom"
     }, [_c("span", {
       staticClass: "fw-bold"
-    }, [_vm._v(_vm._s(file.name))]), _vm._v(" "), _c("div", {}, [_c("label", {
+    }, [_vm._v(_vm._s(file.name))]), _vm._v(" "), file.type.split("/")[1] === "pdf" || file.type.split("/")[1] === "doc" ? _c("div", {}, [_c("label", {
       staticClass: "secondary_color me-1",
       attrs: {
         "for": "select"
       }
-    }, [_vm._v("converti in\n                    ")]), _vm._v(" "), file.type === "image/png" ? _c("select", {
-      staticClass: "btn bg-select",
-      attrs: {
-        name: "select",
-        id: "select"
-      }
-    }, [_c("option", {
-      staticClass: "fw-bold",
-      attrs: {
-        value: "..."
-      }
-    }, [_vm._v("...")]), _vm._v(" "), _c("option", {
-      attrs: {
-        value: "jpg"
-      }
-    }, [_vm._v("jpg")]), _vm._v(" "), _c("option", {
-      attrs: {
-        value: "pdf"
-      }
-    }, [_vm._v("pdf")]), _vm._v(" "), _c("option", {
-      attrs: {
-        value: "pdfa"
-      }
-    }, [_vm._v("pdfa")]), _vm._v(" "), _c("option", {
-      attrs: {
-        value: "png"
-      }
-    }, [_vm._v("png")]), _vm._v(" "), _c("option", {
-      attrs: {
-        value: "svg"
-      }
-    }, [_vm._v("sgv")]), _vm._v(" "), _c("option", {
-      attrs: {
-        value: "tiff"
-      }
-    }, [_vm._v("tiff")]), _vm._v(" "), _c("option", {
-      attrs: {
-        value: "webp"
-      }
-    }, [_vm._v("webp")])]) : _vm._e()]), _vm._v(" "), _c("span", {
+    }, [_vm._v("converti in\n                    ")]), _vm._v(" "), _vm._m(1, true)]) : _c("div", {}, [_c("strong", {
+      staticClass: "text-danger"
+    }, [_vm._v("Seleziona un file pdf o doc per la conversione\n                    ")])]), _vm._v(" "), _c("span", {
       staticClass: "size_font"
     }, [_vm._v(_vm._s(_vm.formatFileSize(file.size)))]), _vm._v(" "), _c("div", {
       staticClass: "remove-container"
@@ -25478,7 +25479,12 @@ var render = function render() {
           return _vm.removeFile(key);
         }
       }
-    }, [_vm._v("X")])])]);
+    }, [_vm._v("X")]), _vm._v(" "), _c("a", {
+      staticClass: "remove text-primary fw-bold",
+      attrs: {
+        id: "donwloadButton"
+      }
+    }, [_vm._v("⬇️")])])]);
   }), 0), _vm._v(" "), _c("div", {
     directives: [{
       name: "show",
@@ -25500,10 +25506,11 @@ var render = function render() {
       display: "none"
     },
     attrs: {
+      value: "Convert file",
       type: "file",
       name: "File"
     }
-  })]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
   }, [_c("label", {
     staticClass: "btn btn-default btn-file fw-bold custom-icon-color"
@@ -25544,12 +25551,15 @@ var render = function render() {
     attrs: {
       type: "submit",
       value: "Convert file"
+    },
+    on: {
+      submit: _vm.apiCall
     }
-  })], 1)])])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("div", {
+  })], 1)])])])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "third-serction text-center mt-5"
   }, [_c("h2", {
     staticClass: "fw-bold pt-5"
-  }, [_vm._v("I vantaggi di DOC CONVERTER")]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("div", {
+  }, [_vm._v("I vantaggi di DOC CONVERTER")]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c("div", {
     staticClass: "container"
   }, [_c("div", {
     staticClass: "row mt-5 mb-5 d-flex justify-content-center"
@@ -25621,6 +25631,42 @@ var staticRenderFns = [function () {
       href: "register"
     }
   }, [_vm._v("Registrati")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("select", {
+    staticClass: "btn bg-select",
+    attrs: {
+      name: "select",
+      id: "select"
+    }
+  }, [_c("option", {
+    staticClass: "fw-bold",
+    attrs: {
+      value: "..."
+    }
+  }, [_vm._v("...")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "doc"
+    }
+  }, [_vm._v("doc")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "docx"
+    }
+  }, [_vm._v("docx")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "jpg"
+    }
+  }, [_vm._v("jpg")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "png"
+    }
+  }, [_vm._v("png")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "html"
+    }
+  }, [_vm._v("html")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
