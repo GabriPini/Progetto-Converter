@@ -25208,11 +25208,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }.bind(this));
       this.$refs.fileform2.addEventListener("change", function () {
-        console.log(this.$refs.fileform2.files[0]);
+        /* console.log(this.$refs.fileform2.files[0]); */
         this.files.push(this.$refs.fileform2.files[0]);
       }.bind(this));
       this.$refs.fileform3.addEventListener("change", function () {
-        console.log(this.$refs.fileform3.files[0]);
+        /* console.log(this.$refs.fileform3.files[0]); */
         this.files.push(this.$refs.fileform3.files[0]);
       }.bind(this));
     }
@@ -25221,69 +25221,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     apiCall: function apiCall() {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var i, donwloadBtn, convertApi, userSelect, userFile, params, result, url;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _this.files.forEach( /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(file) {
-                    var i, donwloadBtn, convertApi, userSelect, userFile, params, result, url;
-                    return _regeneratorRuntime().wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            i = 0;
-
-                          case 1:
-                            if (!(i < _this.files.length)) {
-                              _context.next = 21;
-                              break;
-                            }
-
-                            donwloadBtn = document.getElementById(_this.files[i].name);
-                            convertApi = convertapi_js__WEBPACK_IMPORTED_MODULE_0__["default"].auth("ltE5TH69gYyu4IKI");
-                            userSelect = document.getElementById(i + _this.files[i].name).value;
-                            userFile = _this.files[i].type.split("/")[1];
-                            params = convertApi.createParams();
-                            params.add("File", _this.files[i]);
-                            console.log(params);
-                            _context.next = 11;
-                            return convertApi.convert(userFile, userSelect, params);
-
-                          case 11:
-                            result = _context.sent;
-                            console.log(result);
-                            url = result.files[0].Url;
-                            console.log(url);
-                            donwloadBtn.href = url;
-                            _this.fileUrl = true;
-                            console.log(donwloadBtn);
-
-                          case 18:
-                            i++;
-                            _context.next = 1;
-                            break;
-
-                          case 21:
-                          case "end":
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee);
-                  }));
-
-                  return function (_x) {
-                    return _ref.apply(this, arguments);
-                  };
-                }());
+                i = 0;
 
               case 1:
+                if (!(i < _this.files.length)) {
+                  _context.next = 18;
+                  break;
+                }
+
+                donwloadBtn = document.getElementById(_this.files[i].name);
+                convertApi = convertapi_js__WEBPACK_IMPORTED_MODULE_0__["default"].auth("ltE5TH69gYyu4IKI");
+                userSelect = document.getElementById(i + _this.files[i].name).value;
+                userFile = _this.files[i].type.split("/")[1];
+                params = convertApi.createParams();
+                params.add("File", _this.files[i]);
+                /*   console.log(params); */
+
+                _context.next = 10;
+                return convertApi.convert(userFile, userSelect, params);
+
+              case 10:
+                result = _context.sent;
+
+                /*    console.log(result); */
+                url = result.files[0].Url;
+                /*
+                    console.log(url); */
+
+                donwloadBtn.href = url;
+                _this.fileUrl = true;
+                console.log(donwloadBtn);
+
+              case 15:
+                i++;
+                _context.next = 1;
+                break;
+
+              case 18:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2);
+        }, _callee);
       }))();
     },
 

@@ -282,14 +282,14 @@ export default {
             this.$refs.fileform2.addEventListener(
                 "change",
                 function () {
-                    console.log(this.$refs.fileform2.files[0]);
+                    /* console.log(this.$refs.fileform2.files[0]); */
                     this.files.push(this.$refs.fileform2.files[0]);
                 }.bind(this)
             );
             this.$refs.fileform3.addEventListener(
                 "change",
                 function () {
-                    console.log(this.$refs.fileform3.files[0]);
+                    /* console.log(this.$refs.fileform3.files[0]); */
                     this.files.push(this.$refs.fileform3.files[0]);
                 }.bind(this)
             );
@@ -298,34 +298,30 @@ export default {
 
     methods: {
         async apiCall() {
-            this.files.forEach(async (file) => {
-                for (let i = 0; i < this.files.length; i++) {
-                    let donwloadBtn = document.getElementById(
-                        this.files[i].name
-                    );
-                    let convertApi = ConvertApi.auth("ltE5TH69gYyu4IKI");
-                    let userSelect = document.getElementById(
-                        i + this.files[i].name
-                    ).value;
-                    let userFile = this.files[i].type.split("/")[1];
-                    let params = convertApi.createParams();
-                    params.add("File", this.files[i]);
-                    console.log(params);
-                    let result = await convertApi.convert(
-                        userFile,
-                        userSelect,
-                        params
-                    );
-                    console.log(result);
-                    let url = result.files[0].Url;
+            for (let i = 0; i < this.files.length; i++) {
+                let donwloadBtn = document.getElementById(this.files[i].name);
+                let convertApi = ConvertApi.auth("ltE5TH69gYyu4IKI");
+                let userSelect = document.getElementById(
+                    i + this.files[i].name
+                ).value;
+                let userFile = this.files[i].type.split("/")[1];
+                let params = convertApi.createParams();
+                params.add("File", this.files[i]);
+                /*   console.log(params); */
+                let result = await convertApi.convert(
+                    userFile,
+                    userSelect,
+                    params
+                );
+                /*    console.log(result); */
+                let url = result.files[0].Url;
+                /*
+                    console.log(url); */
+                donwloadBtn.href = url;
+                this.fileUrl = true;
 
-                    console.log(url);
-                    donwloadBtn.href = url;
-                    this.fileUrl = true;
-
-                    console.log(donwloadBtn);
-                }
-            });
+                console.log(donwloadBtn);
+            }
         },
         /*
         Determines if the drag and drop functionality is in the
