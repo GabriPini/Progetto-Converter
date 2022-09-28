@@ -52,6 +52,9 @@ progress {
 
 .bg-convert {
     background-color: #9ebbfa;
+    &:hover {
+        background-color: #2a67eb;
+    }
 }
 
 .remove_gutter_x {
