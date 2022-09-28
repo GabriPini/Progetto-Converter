@@ -1,0 +1,66 @@
+.first-section {
+    width: 100%;
+    background-color: #fafcff;
+    background-image: url("/img/background-main.png");
+    h1 {
+        font-size: 64px;
+        color: #040b38;
+    }
+    .border-dashed {
+        border-style: dashed;
+    }
+    .bg-lightblue {
+        background-color: #e4ecfc;
+    }
+}
+
+div.file-listing {
+    margin: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+div.remove-container a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+progress {
+    width: 400px;
+    margin: auto;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* ^ end form */
+.secondary_color {
+    color: #818498;
+}
+
+.size_font {
+    font-size: 12px;
+    color: #818498;
+}
+
+.bg-select {
+    background-color: #e4ecfc;
+}
+.border-custom {
+    border: 1px solid #e4ecfc;
+}
+
+.bg-convert {
+    background-color: #9ebbfa;
+}
+
+.remove_gutter_x {
+    --bs-gutter-x: 0;
+}
+
+.custom-icon-color {
+    color: #9ebbfa;
+    &:hover {
+        color: #2a67eb;
+    }
+}
