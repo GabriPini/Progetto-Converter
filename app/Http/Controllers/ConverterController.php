@@ -1,21 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
-use App\Http\Requests\FileRequest;
 use App\Services\ConvertApi;
+use Illuminate\Http\Request;
+
 
 
 class ConverterController extends Controller
 {
 
-
-public function conversion(FileRequest $request)
+public function submit(Request $request)
 {
 
 
-    $fileName = $request->File->getClientOriginalName();
-    $originalFile = $request->File;
+    $fileName = $request->config;
+    return   $fileName;
+/* Cercando di vedere cosa mi torna  */
+
+/*     $originalFile = $request->File;
 
     $type = $request->File->getClientMimeType();
     $size = $request->File->getSize();
@@ -26,13 +30,10 @@ public function conversion(FileRequest $request)
 
     $fileConvertito = new ConvertApi();
 
-    dd($fileConvertito);
-    /* Cercando di capire cosa mi ritorna  */
+    $response = $fileConvertito->convert_api($secret, $to_format, $originalFile, array('FileName' => $fileName, 'StoreFile' => 'true'));
 
-/*     $result = convert_api( $secret, $to_format, $originalFile, array('FileName' => $fileName, 'StoreFile' => 'true'));
-    $converted_file_url = $result->Files[0]->Url;
+dd($response);
  */
-
 
 }
 }

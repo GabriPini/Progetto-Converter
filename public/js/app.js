@@ -25257,7 +25257,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/convert", {
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/convert", {
                   files: _this.files,
                   formats: _this.formats
                 });
@@ -25265,8 +25265,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 results = _context.sent;
                 _this.results = results;
+                console.log(results);
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -25454,7 +25455,7 @@ var render = function render() {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
-        return _vm.apiCall();
+        return _vm.apiCall.apply(null, arguments);
       }
     }
   }, [_c("h1", {

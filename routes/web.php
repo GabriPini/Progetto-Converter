@@ -23,7 +23,9 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/convert', 'ConverterController@conversion');
+
+
+
 /* Probabile route sbagliata  ricevo messaggio :"The GET method is not supported for this route. Supported methods: POST." */
 
 
