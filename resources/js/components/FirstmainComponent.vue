@@ -1,9 +1,9 @@
 <template>
     <form
         class="first-section text-center mt-5 mb-5"
-        method="get"
+        method="post"
         enctype="multipart/form-data"
-        @submit.prevent="apiCall"
+        @submit.prevent="apiCall()"
     >
         <h1 class="fw-bold">Convertitore file</h1>
         <p>

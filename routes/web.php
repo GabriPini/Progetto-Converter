@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\ConverterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +23,12 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/convert', ConverterController::class);
+Route::post('/convert', 'ConverterController@conversion');
+/* Probabile route sbagliata  ricevo messaggio :"The GET method is not supported for this route. Supported methods: POST." */
 
-Route::get("{any?}", function(){
+
+/* Route::get("{any?}", function(){
     return view("home");
 })->where("any",".*");
+
+ */

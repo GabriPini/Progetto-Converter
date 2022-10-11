@@ -10,14 +10,9 @@ class ConverterController extends Controller
 {
 
 
-    /**
- * Store a new blog post.
- *
- * @param  \App\Http\Requests\StorePostRequest  $request
- * @return Illuminate\Http\Response
- */
-public function __invoke(FileRequest $request , ConvertApi $convert)
+public function conversion(FileRequest $request)
 {
+
 
     $fileName = $request->File->getClientOriginalName();
     $originalFile = $request->File;
@@ -29,12 +24,15 @@ public function __invoke(FileRequest $request , ConvertApi $convert)
     $from_format = substr($type, strrpos($type, '/') + 1);
     $to_format = $request->selectType;
 
+    $fileConvertito = new ConvertApi();
 
- /*    $result = convert_api( $secret, $to_format, $originalFile, array('FileName' => $fileName, 'StoreFile' => 'true')); */
-  /*   $converted_file_url = $result->Files[0]->Url; */
+    dd($fileConvertito);
+    /* Cercando di capire cosa mi ritorna  */
 
+/*     $result = convert_api( $secret, $to_format, $originalFile, array('FileName' => $fileName, 'StoreFile' => 'true'));
+    $converted_file_url = $result->Files[0]->Url;
+ */
 
-   /*  return  $converted_file_url; */
 
 }
 }

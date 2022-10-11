@@ -25448,13 +25448,13 @@ var render = function render() {
   return _c("form", {
     staticClass: "first-section text-center mt-5 mb-5",
     attrs: {
-      method: "get",
+      method: "post",
       enctype: "multipart/form-data"
     },
     on: {
       submit: function submit($event) {
         $event.preventDefault();
-        return _vm.apiCall.apply(null, arguments);
+        return _vm.apiCall();
       }
     }
   }, [_c("h1", {
