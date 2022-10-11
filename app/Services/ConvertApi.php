@@ -1,35 +1,33 @@
-<!-- Endpoint della Api: https://v2.convertapi.com/{from_format}/to/{to_format}?secret={secret} e dovrà avere I parametri: file (il file da convertire), StoreFile: true
-    - "L’utente carica il documento in formato pdf o doc da pc e potrà scaricare un documento convertito in doc docx jpg png e html
--->
-
 <?php
-/*
-define("UPLOAD_DIR", "./tmp/");
-$rest_url="http://do.convertapi.com/Pdf2Image";
+namespace App\Services;
 
-$up_file=UPLOAD_DIR.rand(100,999)."_".basename($_FILES['fileField']['name']);
-if (!move_uploaded_file($_FILES['fileField']['tmp_name'], $up_file)) {
-    die("Possible file upload attack!");
+use CURLFile;
+use Exception;
+
+class ConvertApi
+{
+
+  function convert_api($secret, $format, $path_to_file, $parameters = array()) {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_URL, "http://v2.convertapi.com/to/{$format}?secret={$secret}");
+        $parameters['file'] = strpos($path_to_file, 'http') !== 0 ? new CURLFile($path_to_file) : $path_to_file;
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $parameters);
+        $response = curl_exec($curl);
+        $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $error = curl_error($curl);
+        curl_close($curl);
+        if ($response && $httpcode >= 200 && $httpcode <= 299) {
+          return json_decode($response);
+        } else {
+          throw new Exception($error . $response, $httpcode);
+        }
+
+
+      }
+
+
 }
 
-$cfile=new CURLFile($up_file);
 
-$params=array(
-    "ApiKey" => 11111111,
-    "OutputFormat" => "png",
-    "OutputFileName" => "converted.png",
-    "File" => $cfile
-    );
-
-$ch=curl_init($rest_url);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_HEADER, 1);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-$res=curl_exec($ch);
-$headers=curl_getinfo($ch);
-curl_close($ch);
-
-echo "<pre>";
-print_r($headers);
-var_dump($res); */

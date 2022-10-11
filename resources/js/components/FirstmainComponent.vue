@@ -85,9 +85,8 @@
                         >converti in
                     </label>
                     <select
-                        name="select"
-                        :id="key + file.name"
                         class="btn bg-select"
+                        @change="($event) => onChangeFormat($event, key)"
                     >
                         <option value="..." class="fw-bold">...</option>
                         <option value="doc">doc</option>
@@ -108,14 +107,14 @@
 
                 <div class="remove-container">
                     <a
-                        v-show="fileUrl"
+                        v-if="!!results[key]"
                         class="remove text-primary fw-bold"
-                        href="#"
+                        href="results[key]"
                         :id="file.name"
                         ><font-awesome-icon icon="fa-solid fa-download"
                     /></a>
                     <a
-                        v-show="!fileUrl"
+                        v-else
                         class="remove text-primary fw-bold"
                         v-on:click="removeFile(key)"
                         >X</a
@@ -179,7 +178,6 @@
                             class="btn"
                             type="submit"
                             id="upload-btn"
-                            @submit="apiCall"
                             value="Convert file"
                             style="display: none"
                         />
@@ -191,7 +189,8 @@
 </template>
 
 <script>
-import ConvertApi from "convertapi-js";
+import axios from "axios";
+
 export default {
     name: "FirstmainComponent",
 
@@ -199,6 +198,8 @@ export default {
         return {
             dragAndDropCapable: false,
             files: [],
+            formats: [],
+            results: [],
             uploadPercentage: 0,
             fileUrl: false,
         };
@@ -298,31 +299,18 @@ export default {
 
     methods: {
         async apiCall() {
-            for (let i = 0; i < this.files.length; i++) {
-                let donwloadBtn = document.getElementById(this.files[i].name);
-                let convertApi = ConvertApi.auth("ltE5TH69gYyu4IKI");
-                let userSelect = document.getElementById(
-                    i + this.files[i].name
-                ).value;
-                let userFile = this.files[i].type.split("/")[1];
-                let params = convertApi.createParams();
-                params.add("File", this.files[i]);
-                /*   console.log(params); */
-                let result = await convertApi.convert(
-                    userFile,
-                    userSelect,
-                    params
-                );
-                /*    console.log(result); */
-                let url = result.files[0].Url;
-                /*
-                    console.log(url); */
-                donwloadBtn.href = url;
-                this.fileUrl = true;
-
-                console.log(donwloadBtn);
-            }
+            const results = await axios.post("/convert", {
+                files: this.files,
+                formats: this.formats,
+            });
+            this.results = results;
         },
+
+        onChangeFormat(event, key) {
+            this.formats[key] = event.target.value;
+            console.log(event.target.value);
+        },
+
         /*
         Determines if the drag and drop functionality is in the
         window
