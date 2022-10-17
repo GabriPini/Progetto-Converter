@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 });
-Route::get('/convert', 'ConverterController@submit' );
+Route::post('/convert', 'ConverterController@submit' );

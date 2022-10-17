@@ -25228,20 +25228,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       */
 
       this.$refs.fileform.addEventListener("drop", function (e) {
-        /*
-        Capture the files from the drop event and add them to our local files
-        array.
-        */
         for (var i = 0; i < e.dataTransfer.files.length; i++) {
           this.files.push(e.dataTransfer.files[i]);
         }
       }.bind(this));
       this.$refs.fileform2.addEventListener("change", function () {
-        /* console.log(this.$refs.fileform2.files[0]); */
         this.files.push(this.$refs.fileform2.files[0]);
       }.bind(this));
       this.$refs.fileform3.addEventListener("change", function () {
-        /* console.log(this.$refs.fileform3.files[0]); */
         this.files.push(this.$refs.fileform3.files[0]);
       }.bind(this));
     }
@@ -25257,7 +25251,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/convert", {
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/convert", {
                   files: _this.files,
                   formats: _this.formats
                 });
@@ -25265,7 +25259,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 results = _context.sent;
                 _this.results = results;
-                console.log(results);
+                console.log(_this.results);
 
               case 5:
               case "end":

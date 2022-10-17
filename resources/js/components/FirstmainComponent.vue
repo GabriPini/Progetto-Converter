@@ -271,10 +271,6 @@ export default {
                 "drop",
 
                 function (e) {
-                    /*
-            Capture the files from the drop event and add them to our local files
-            array.
-          */
                     for (let i = 0; i < e.dataTransfer.files.length; i++) {
                         this.files.push(e.dataTransfer.files[i]);
                     }
@@ -283,14 +279,12 @@ export default {
             this.$refs.fileform2.addEventListener(
                 "change",
                 function () {
-                    /* console.log(this.$refs.fileform2.files[0]); */
                     this.files.push(this.$refs.fileform2.files[0]);
                 }.bind(this)
             );
             this.$refs.fileform3.addEventListener(
                 "change",
                 function () {
-                    /* console.log(this.$refs.fileform3.files[0]); */
                     this.files.push(this.$refs.fileform3.files[0]);
                 }.bind(this)
             );
@@ -299,12 +293,12 @@ export default {
 
     methods: {
         async apiCall() {
-            const results = await axios.get("/api/convert", {
+            const results = await axios.post("/api/convert", {
                 files: this.files,
                 formats: this.formats,
             });
             this.results = results;
-            console.log(results);
+            console.log(this.results);
         },
 
         onChangeFormat(event, key) {
